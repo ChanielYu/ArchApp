@@ -1,4 +1,4 @@
-package com.auxy.archapp.ui.dashboard
+package com.auxy.archapp.main.ui.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater

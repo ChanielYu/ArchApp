@@ -1,4 +1,4 @@
-package com.auxy.archapp.ui.notifications
+package com.auxy.archapp.main.ui.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
