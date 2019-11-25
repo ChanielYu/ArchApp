@@ -1,5 +1,6 @@
 package com.auxy.archapp.di
 
+import com.auxy.archapp.main.ui.weather.WeatherClient
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -31,12 +32,6 @@ class RetrofitClientModule {
                 .client(httpClient)
                 .build()
     }
-
-    /*@Provides
-    @Singleton
-    internal fun provideWeatherRetrofitClient(retrofit: Retrofit): WeatherClient {
-        return retrofit.create<WeatherClient>(WeatherClient::class.java)
-    }*/
 
     companion object {
         private const val baseUrl = "https://api.forecast.io/forecast/a52faed7963ddaddf5139ab91f066c6d/"
