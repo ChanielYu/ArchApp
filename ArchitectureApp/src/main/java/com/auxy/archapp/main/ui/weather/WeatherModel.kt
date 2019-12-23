@@ -1,6 +1,7 @@
 package com.auxy.archapp.main.ui.weather
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class WeatherModel(@SerializedName("currently")
                         val currently: Currently?,
@@ -41,7 +42,7 @@ data class WeatherModel(@SerializedName("currently")
                          @SerializedName("temperature")
                          val temperature: Double?,
                          @SerializedName("time")
-                         val time: Int?,
+                         val time: Date?,
                          @SerializedName("uvIndex")
                          val uvIndex: Int?,
                          @SerializedName("visibility")
@@ -123,7 +124,7 @@ data class WeatherModel(@SerializedName("currently")
                     @SerializedName("temperatureMinTime")
                     val temperatureMinTime: Int?,
                     @SerializedName("time")
-                    val time: Int?,
+                    val time: Date?,
                     @SerializedName("uvIndex")
                     val uvIndex: Int?,
                     @SerializedName("uvIndexTime")
@@ -176,7 +177,7 @@ data class WeatherModel(@SerializedName("currently")
                      @SerializedName("temperature")
                      val temperature: Double?,
                      @SerializedName("time")
-                     val time: Int?,
+                     val time: Date?,
                      @SerializedName("uvIndex")
                      val uvIndex: Int?,
                      @SerializedName("visibility")

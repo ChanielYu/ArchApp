@@ -2,6 +2,7 @@ package com.auxy.archapp.main.ui.weather
 
 import android.location.Location
 import android.location.LocationManager
+import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,7 +34,8 @@ class WeatherViewModel @Inject constructor(private val weatherRepository: Weathe
         disposable?.dispose()
     }
 
-    private fun refreshWeather() {
+    @MainThread
+    fun refreshWeather() {
         disposable?.dispose()
         disposable = weatherRepository.loadWeather(Location(LocationManager.NETWORK_PROVIDER)
                 .apply {
