@@ -30,6 +30,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -103,6 +107,11 @@ dependencies {
     implementation "io.coil-kt:coil:$coil_version"
     // Picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
+
+    // Epoxy
+    implementation "com.airbnb.android:epoxy:$epoxy_version"
+    // Add the annotation processor if you are using Epoxy's annotations (recommended)
+    kapt "com.airbnb.android:epoxy-processor:$epoxy_version"
 
     // Core library
     androidTestImplementation "androidx.test:core:$androidx_test_core_version"
