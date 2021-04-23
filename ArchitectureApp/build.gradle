@@ -66,6 +66,8 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     implementation "com.google.android.material:material:$material_version"
+    // Google location
+    implementation "com.google.android.gms:play-services-maps:$gms_map_version"
     // Dagger 2
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
@@ -80,10 +82,12 @@ dependencies {
 
     // Retrofit 2
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_version"
+    // TODO: Remove later
     implementation "com.squareup.retrofit2:retrofit-mock:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-jackson:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     // RxJava 3
     implementation "io.reactivex.rxjava3:rxandroid:$rxjava_version"

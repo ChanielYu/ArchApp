@@ -4,27 +4,37 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import com.auxy.archapp.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.auxy.archapp.databinding.FragmentHomeBinding
 import com.auxy.archapp.viewmodel.ViewModelFactory
-import dagger.android.support.DaggerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-class HomeFragment : DaggerFragment() {
+@AndroidEntryPoint
+class HomeFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private lateinit var homeViewModel: HomeViewModel
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        homeViewModel = ViewModelProviders.of(this, viewModelFactory)[HomeViewModel::class.java]
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(this, Observer {
-            textView.text = it
+
+    private val homeViewModel: HomeViewModel by viewModels { viewModelFactory }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        homeViewModel.text.observe(viewLifecycleOwner, {
+            binding.textHome.text = it
         })
-        return root
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
+            FragmentHomeBinding.inflate(inflater, container, false).also {
+                _binding = it
+            }.root
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

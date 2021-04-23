@@ -1,6 +1,7 @@
 package com.auxy.archapp.main.ui.weather
 
-import io.reactivex.Single
+import com.auxy.archapp.main.ui.weather.model.WeatherModel
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 

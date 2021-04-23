@@ -6,9 +6,11 @@ import com.auxy.archapp.main.ui.weather.WeatherViewModel
 import com.auxy.archapp.viewmodel.ViewModelKey
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
 import dagger.multibindings.IntoMap
 
-@Suppress("unused")
+//@Suppress("unused")
+@InstallIn(ApplicationComponent::class)
 @Module
 abstract class ViewModelModule {
     @Binds
