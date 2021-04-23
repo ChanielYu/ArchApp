@@ -1,15 +1,12 @@
 package com.auxy.archapp.main.ui.weather.adapter
 
-import android.widget.TextView
-import butterknife.BindView
-import com.auxy.archapp.R
-import com.auxy.archapp.epoxy.ButterKnifeHolder
+import android.view.View
+import com.airbnb.epoxy.EpoxyHolder
+import com.auxy.archapp.databinding.ItemWeatherCurrentBinding
 
-class WeatherCurrentHolder : ButterKnifeHolder() {
-    @BindView(R.id.current_summary)
-    lateinit var summary: TextView
-    @BindView(R.id.date_time)
-    lateinit var dateTime: TextView
-    @BindView(R.id.temperature)
-    lateinit var temperature: TextView
+class WeatherCurrentHolder : EpoxyHolder() {
+    lateinit var viewBinding: ItemWeatherCurrentBinding
+    override fun bindView(itemView: View) {
+        viewBinding = ItemWeatherCurrentBinding.bind(itemView)
+    }
 }

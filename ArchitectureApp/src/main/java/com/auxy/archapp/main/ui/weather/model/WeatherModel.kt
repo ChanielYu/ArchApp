@@ -21,7 +21,7 @@ data class WeatherModel(
         @Json(name = "offset")
         val offset: Int? = null,
         @Json(name = "timezone")
-        val timezone: String? = null
+        val timezone: TimeZone? = null
 ) {
     data class Currently(
             @Json(name = "apparentTemperature")

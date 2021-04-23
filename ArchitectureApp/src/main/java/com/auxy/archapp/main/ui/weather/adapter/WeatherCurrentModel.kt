@@ -9,15 +9,17 @@ import com.auxy.archapp.R
 abstract class WeatherCurrentModel : EpoxyModelWithHolder<WeatherCurrentHolder>() {
     @EpoxyAttribute
     var summaryText: String? = null
+
     @EpoxyAttribute
     var timeText: String? = null
+
     @EpoxyAttribute
     var temperatureText: String? = null
 
     override fun bind(holder: WeatherCurrentHolder) {
         super.bind(holder)
-        with(holder) {
-            summary.text = summaryText
+        with(holder.viewBinding) {
+            currentSummary.text = summaryText
             dateTime.text = timeText
             temperature.text = temperatureText
         }
@@ -25,8 +27,8 @@ abstract class WeatherCurrentModel : EpoxyModelWithHolder<WeatherCurrentHolder>(
 
     override fun unbind(holder: WeatherCurrentHolder) {
         super.unbind(holder)
-        with(holder) {
-            summary.text = null
+        with(holder.viewBinding) {
+            currentSummary.text = summaryText
             dateTime.text = null
             temperature.text = null
         }

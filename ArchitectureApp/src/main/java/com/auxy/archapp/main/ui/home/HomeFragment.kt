@@ -7,20 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.auxy.archapp.databinding.FragmentHomeBinding
-import com.auxy.archapp.viewmodel.ViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    private val homeViewModel: HomeViewModel by viewModels()
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-
-    private val homeViewModel: HomeViewModel by viewModels { viewModelFactory }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         homeViewModel.text.observe(viewLifecycleOwner, {

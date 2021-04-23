@@ -4,14 +4,12 @@ import com.auxy.archapp.main.ui.weather.WeatherClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.FragmentComponent
+import dagger.hilt.android.components.ViewModelComponent
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
 @Module
-@InstallIn(FragmentComponent::class)
+@InstallIn(ViewModelComponent::class)
 class WeatherModule {
     @Provides
-    @Singleton
     fun provideWeatherRetrofitClient(retrofit: Retrofit): WeatherClient = retrofit.create(WeatherClient::class.java)
 }

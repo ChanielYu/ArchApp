@@ -1,9 +1,10 @@
-package com.auxy.archapp.di
+package com.auxy.archapp.app.di
 
 import com.auxy.archapp.moshi.MoshiInstance
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
@@ -12,10 +13,10 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 class RetrofitClientModule {
-    @Provides
     @Singleton
+    @Provides
     internal fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
@@ -23,8 +24,8 @@ class RetrofitClientModule {
                 .build()
     }
 
-    @Provides
     @Singleton
+    @Provides
     internal fun provideRetrofit(httpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(baseUrl)

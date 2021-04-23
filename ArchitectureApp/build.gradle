@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 30
@@ -52,6 +52,8 @@ dependencies {
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$navigation_version"
     // Work Manager
     implementation "androidx.work:work-runtime-ktx:$work_version" // use -ktx for Kotlin
     // optional - RxJava2 support
@@ -127,6 +129,8 @@ dependencies {
     // UiAutomator Testing
     androidTestImplementation "androidx.test.uiautomator:uiautomator:$uiautomator_version"
 
+    // Testing Navigation
+    androidTestImplementation "androidx.navigation:navigation-testing:$navigation_version"
     // optional - Test helpers
     androidTestImplementation "androidx.work:work-testing:$work_version"
 

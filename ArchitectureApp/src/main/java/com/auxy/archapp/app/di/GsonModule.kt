@@ -1,14 +1,17 @@
-package com.auxy.archapp.di
+package com.auxy.archapp.app.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import java.util.*
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class GsonModule {
     @Singleton
     @Provides

@@ -7,16 +7,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.auxy.archapp.main.ui.weather.model.WeatherModel
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
+import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
+@HiltViewModel
 class WeatherViewModel @Inject constructor(private val weatherRepository: WeatherRepository) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is weather Fragment"
     }
     val text: LiveData<String> = _text
+
     // Weather
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
