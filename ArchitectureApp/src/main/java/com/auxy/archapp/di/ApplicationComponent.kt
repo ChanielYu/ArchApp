@@ -1,7 +1,7 @@
 package com.auxy.archapp.di
 
 import android.app.Application
-import com.auxy.archapp.ArchApp
+import com.auxy.archapp.app.ArchApp
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
