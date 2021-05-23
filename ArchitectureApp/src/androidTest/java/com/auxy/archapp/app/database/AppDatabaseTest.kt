@@ -39,10 +39,12 @@ class AppDatabaseTest {
     @Test
     fun weatherModelDaoTest() {
         weatherMode?.currently?.time?.let {
-            weatherModelDao.insertWeather(WeatherData(
+            weatherModelDao.insertWeather(
+                WeatherData(
                     it.time / 1000,
                     weatherMode?.currently?.summary
-            ))
+                )
+            )
         }
         val expiredWeathers = weatherModelDao.getExpiredWeathers()
         assertTrue(expiredWeathers[0].timeSeconds < Date().time / 1000)

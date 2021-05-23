@@ -18,18 +18,20 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.refresh.setOnClickListener {
+        binding.swipeRefresh.setOnRefreshListener {
             dashboardViewModel.refreshWeather()
         }
         dashboardViewModel.text.observe(viewLifecycleOwner, {
-            binding.textDashboard.text = it
         })
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-            FragmentDashboardBinding.inflate(inflater, container, false).apply {
-                _binding = this
-            }.root
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ) = FragmentDashboardBinding.inflate(inflater, container, false).apply {
+        _binding = this
+    }.root
 
     override fun onDestroyView() {
         super.onDestroyView()

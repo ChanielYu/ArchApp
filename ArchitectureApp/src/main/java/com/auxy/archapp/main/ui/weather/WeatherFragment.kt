@@ -19,9 +19,10 @@ class WeatherFragment : Fragment() {
     private var _binding: FragmentWeatherBinding? = null
     private val binding get() = _binding!!
 
-    private val dateFormat: SimpleDateFormat = (SimpleDateFormat.getDateTimeInstance() as SimpleDateFormat).apply {
-        applyPattern("yyyy-MM-dd HH:mm:ss")
-    }
+    private val dateFormat: SimpleDateFormat =
+        (SimpleDateFormat.getDateTimeInstance() as SimpleDateFormat).apply {
+            applyPattern("yyyy-MM-dd HH:mm:ss")
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,13 +60,17 @@ class WeatherFragment : Fragment() {
         })
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-            FragmentWeatherBinding.inflate(inflater, container, false).apply {
-                _binding = this
-                swipeRefresh.setOnRefreshListener {
-                    weatherViewModel.refreshWeather()
-                }
-            }.root
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ) =
+        FragmentWeatherBinding.inflate(inflater, container, false).apply {
+            _binding = this
+            swipeRefresh.setOnRefreshListener {
+                weatherViewModel.refreshWeather()
+            }
+        }.root
 
     override fun onDestroyView() {
         super.onDestroyView()
