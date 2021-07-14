@@ -1,4 +1,4 @@
-package com.auxy.archapp.ui.notifications
+package com.auxy.archapp.main.ui.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
