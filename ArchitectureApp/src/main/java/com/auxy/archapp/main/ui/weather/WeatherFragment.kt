@@ -35,7 +35,7 @@ class WeatherFragment : Fragment() {
         weatherViewModel.weather.observe(viewLifecycleOwner, { weather ->
             binding.recyclerView.withModels {
                 weatherCurrent {
-                    id("Current Item")
+                    id("com.auxy.archapp.main.ui.notifications.model.Current Item")
                     summaryText(weather.currently?.summary)
                     timeText(weather.currently?.time?.let {
                         dateFormat.format(it)
