@@ -6,8 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.auxy.archapp.databinding.FragmentNotificationsBinding
+import com.auxy.archapp.main.ui.notifications.NotificationContract.ViewState.Shimmer
+import com.auxy.archapp.main.ui.notifications.NotificationContract.ViewState.Success
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class NotificationsFragment : Fragment() {
@@ -18,18 +25,15 @@ class NotificationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        notificationsViewModel.text.observe(viewLifecycleOwner, {
-            binding.textNotifications.text = it
-        })
-        notificationsViewModel.isBusy.observe(viewLifecycleOwner, { isBusy ->
-            if (isBusy) {
-                binding.progressBar.show()
-            } else {
-                binding.progressBar.hide()
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                notificationsViewModel.viewState.collect { viewSate ->
+                    when (viewSate) {
+                        Shimmer -> Unit
+                        is Success -> binding.textNotifications.text
+                    }
+                }
             }
-        })
-        binding.refresh.setOnClickListener {
-            notificationsViewModel.refresh()
         }
     }
 

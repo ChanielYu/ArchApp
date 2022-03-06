@@ -6,4 +6,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="banner">Banner</string>
     <string name="refresh">Refresh</string>
+    <string name="content_home_icon">Home icon</string>
+    <string name="content_notification_icon">Notification icon</string>
 </resources>
