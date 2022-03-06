@@ -8,9 +8,15 @@ import com.auxy.archapp.main.ui.notifications.NotificationContract.ViewState.Shi
 import com.auxy.archapp.main.ui.notifications.NotificationContract.ViewState.Success
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ObsoleteCoroutinesApi
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ticker
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
+@ObsoleteCoroutinesApi
 @HiltViewModel
 class NotificationsViewModel @Inject constructor(
     private val weatherRepository: ForecastWeatherRepository
@@ -18,9 +24,15 @@ class NotificationsViewModel @Inject constructor(
     private val _viewState: MutableStateFlow<ViewState> = MutableStateFlow(Shimmer)
     val viewState: StateFlow<ViewState> = _viewState
 
+    private val byClick = AtomicBoolean(false)
+
+    private val refreshA = Channel<AtomicBoolean>(Channel.CONFLATED).apply { trySend(byClick) }
+
+    private val ticker = ticker(10000, 0)
+
     init {
-        flow {
-            emit(weatherRepository.loadSourceA())
+        refreshA.receiveAsFlow().combine(ticker.receiveAsFlow()) { byClick, _ ->
+            "${weatherRepository.loadSourceA()} by click = ${byClick.getAndSet(false)}"
         }.flowOn(
             Dispatchers.IO
         ).onEach { text ->
@@ -32,6 +44,10 @@ class NotificationsViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         Log.v(TAG, "onCleared")
+    }
+
+    fun refreshTextA() {
+        viewModelScope.launch { refreshA.send(byClick.apply { set(true) }) }
     }
 
     companion object {

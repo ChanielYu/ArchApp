@@ -25,12 +25,20 @@ class NotificationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        with(binding) {
+            refresh.setOnClickListener {
+                notificationsViewModel.refreshTextA()
+            }
+        }
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 notificationsViewModel.viewState.collect { viewSate ->
                     when (viewSate) {
                         Shimmer -> Unit
-                        is Success -> binding.textNotifications.text
+                        is Success -> with(binding) {
+                            textNotifications.text = viewSate.text
+                            progressBar.hide()
+                        }
                     }
                 }
             }
