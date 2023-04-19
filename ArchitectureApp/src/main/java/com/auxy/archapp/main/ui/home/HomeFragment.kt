@@ -19,7 +19,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         homeViewModel.text.observe(viewLifecycleOwner, {
-            binding.textHome.text = it
+            //binding.textHome.text = it
         })
     }
 
